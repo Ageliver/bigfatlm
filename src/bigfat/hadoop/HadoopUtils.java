@@ -84,7 +84,7 @@ public class HadoopUtils {
 	}
 
 	private static void printCounters(Job job) throws IOException {
-		Collection<String> groups = job.getCounters().getGroupNames();
+		Iterable<String> groups = job.getCounters().getGroupNames();
 		for (String group : groups) {
 			if (!BigFatLM.PROGRAM_NAME.equals(group)) {
 				continue;
