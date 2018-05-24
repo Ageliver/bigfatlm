@@ -14,7 +14,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
-import java.util.zip.GZIPInputStream;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.filecache.DistributedCache;
@@ -27,6 +26,8 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import bigfat.BigFatLM;
+import bigfat.util.MultiMemberGZIPInputStream;
+import bigfat.util.MultiMemberGZIPInputStream;
 
 import com.google.common.collect.Lists;
 
@@ -45,7 +46,7 @@ public class HadoopUtils {
 
 		InputStream is = new HDFSDirInputStream(hdfsDir.toString());
 		if (gunzip) {
-			is = new GZIPInputStream(is);
+			is = new MultiMemberGZIPInputStream(is);
 		}
 		BufferedReader in = new BufferedReader(new InputStreamReader(is));
 		PrintWriter out = new PrintWriter(diskFile);
